@@ -16,7 +16,7 @@ st.markdown("""
 body {background-color: #f4f9f4;}
 h1 {font-family: 'Trebuchet MS', sans-serif; color: #2e7d32;}
 label, .stSelectbox, .stSlider {font-size: 16px;}
-.result-box {padding: 15px; border-radius: 10px; background-color: #e8f5e9; font-size: 18px; font-weight: 600;}
+.result-box {padding: 15px; border-radius: 10px; background-color: #e8f5e9; font-size: 18px; font-weight: 600; color:"black";}
 </style>
 """, unsafe_allow_html=True)
 
@@ -87,7 +87,7 @@ else:
 
 st.markdown(f"""
 <div style="border-radius:10px; background-color:#e0e0e0; height:25px; width:100%;">
-<div style="width:{irrigation_percentage}%; background-color:{color}; height:25px; border-radius:10px; color:"black";"></div>
+<div style="width:{irrigation_percentage}%; background-color:{color}; height:25px; border-radius:10px;"></div>
 </div>
 """, unsafe_allow_html=True)
 st.caption(f"💧 Irrigation Level: {irrigation_percentage}%")
