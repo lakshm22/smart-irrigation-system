@@ -1,4 +1,3 @@
-# utils/model.py
 import numpy as np
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import LabelEncoder
