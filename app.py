@@ -91,18 +91,21 @@ if st.button("Analyze Irrigation Need 🌱"):
         irrigation_percentage = int(irrigation_percentage)
 
 # Detailed result box
-st.markdown(f"""
-<div class='result-box'>
-⚠ <b>Irrigation Required!</b><br><br>
-Crop Type: <b>{crop_type}</b><br>
-Soil Moisture: <b>{soil_moisture}%</b><br>
-Recent Rainfall: <b>{rainfall} mm</b><br>
-Temperature: <b>{temperature}°C</b>, Humidity: <b>{humidity}%</b><br><br>
-Recommendation: <b>{schedule_map[schedule]}</b><br>
-Approximate irrigation amount suggested: <b>{irrigation_percentage}% of standard irrigation volume</b>.<br><br>
-This recommendation balances water use and crop needs to optimize growth while conserving water.
-</div>
-""", unsafe_allow_html=True)
+st.markdown(
+    f"""
+    <div class='result-box'>
+    ⚠ <b>Irrigation Required!</b><br><br>
+    Crop Type: <b>{crop_type}</b><br>
+    Soil Moisture: <b>{soil_moisture}%</b><br>
+    Recent Rainfall: <b>{rainfall} mm</b><br>
+    Temperature: <b>{temperature}°C</b>, Humidity: <b>{humidity}%</b><br><br>
+    Recommendation: <b>{recommendation_text}</b><br>
+    Approximate irrigation amount suggested: <b>{irrigation_percentage}% of standard irrigation volume</b>.<br><br>
+    This recommendation balances water use and crop needs to optimize growth while conserving water.
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # ---------- DYNAMIC GAUGE ----------
 # More accurate: calculate percentage based on soil moisture & rainfall
