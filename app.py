@@ -65,12 +65,44 @@ st.divider()
 # ---------- PREDICTION ----------
 if st.button("Analyze Irrigation Need 🌱"):
     need = predict_irrigation_need(soil_moisture, temperature, humidity, crop_type)
+
     if need == 0:
-        st.markdown("<div class='result-box'>✅ No irrigation needed today. Soil conditions are sufficient.</div>", unsafe_allow_html=True)
+        st.markdown(
+            f"""
+            <div class='result-box'>
+            ✅ <b>No irrigation needed today.</b><br><br>
+            Your soil moisture is <b>{soil_moisture}%</b> and recent rainfall was <b>{rainfall} mm</b>, 
+            which is sufficient for your <b>{crop_type}</b> crop. 
+            The temperature is {temperature}°C and humidity is {humidity}%, 
+            creating favorable conditions. You can save water and let the soil retain moisture naturally.
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+        st.progress(0)
+        st.info("💧 Irrigation Level: 0% (No watering required)")
+
     else:
         schedule = predict_irrigation_schedule(soil_moisture, rainfall)
         schedule_map = {0: "⏸ Delay Irrigation", 1: "💧 Irrigate Lightly", 2: "🚿 Irrigate Fully"}
-        st.markdown(f"<div class='result-box'>⚠ Irrigation Required<br><br>Recommendation: <b>{schedule_map[schedule]}</b></div>", unsafe_allow_html=True)
+
+        # Calculate irrigation percentage for the gauge
+        irrigation_percentage = max(0, min(100, (50 - soil_moisture) + (20 - rainfall)*2))
+        irrigation_percentage = int(irrigation_percentage)
+
+# Detailed result box
+st.markdown(f"""
+<div class='result-box'>
+⚠ <b>Irrigation Required!</b><br><br>
+Crop Type: <b>{crop_type}</b><br>
+Soil Moisture: <b>{soil_moisture}%</b><br>
+Recent Rainfall: <b>{rainfall} mm</b><br>
+Temperature: <b>{temperature}°C</b>, Humidity: <b>{humidity}%</b><br><br>
+Recommendation: <b>{schedule_map[schedule]}</b><br>
+Approximate irrigation amount suggested: <b>{irrigation_percentage}% of standard irrigation volume</b>.<br><br>
+This recommendation balances water use and crop needs to optimize growth while conserving water.
+</div>
+""", unsafe_allow_html=True)
 
 # ---------- DYNAMIC GAUGE ----------
 # More accurate: calculate percentage based on soil moisture & rainfall
