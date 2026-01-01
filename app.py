@@ -16,7 +16,7 @@ st.markdown("""
 body {background-color: #f4f9f4;}
 h1 {font-family: 'Trebuchet MS', sans-serif; color: #2e7d32;}
 label, .stSelectbox, .stSlider {font-size: 16px;}
-.result-box {padding: 15px; border-radius: 10px; background-color: #e8f5e9; font-size: 18px; font-weight: 600; color:"black";}
+.result-box {padding: 15px; border-radius: 10px; background-color: #e8f5e9; font-size: 18px; font-weight: 600; color: black;}
 </style>
 """, unsafe_allow_html=True)
 
