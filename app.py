@@ -85,12 +85,12 @@ elif irrigation_percentage <= 60:
 else:
     color = "red"
 
-        st.markdown(f"""
-            <div style="border-radius:10px; background-color:#e0e0e0; height:25px; width:100%;">
-                <div style="width:{irrigation_percentage}%; background-color:{color}; height:25px; border-radius:10px;"></div>
-            </div>
-        """, unsafe_allow_html=True)
-        st.caption(f"💧 Irrigation Level: {irrigation_percentage}%")
+st.markdown(f"""
+<div style="border-radius:10px; background-color:#e0e0e0; height:25px; width:100%;">
+<div style="width:{irrigation_percentage}%; background-color:{color}; height:25px; border-radius:10px;"></div>
+</div>
+""", unsafe_allow_html=True)
+st.caption(f"💧 Irrigation Level: {irrigation_percentage}%")
 
 st.markdown("---")
 st.caption("Built for sustainability-focused decision making 🌍")
