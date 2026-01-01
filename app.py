@@ -86,9 +86,6 @@ if st.button("Analyze Irrigation Need 🌱"):
         schedule = predict_irrigation_schedule(soil_moisture, rainfall)
         schedule_map = {0: "⏸ Delay Irrigation", 1: "💧 Irrigate Lightly", 2: "🚿 Irrigate Fully"}
 
-        # Calculate irrigation percentage for the gauge
-        irrigation_percentage = max(0, min(100, (50 - soil_moisture) + (20 - rainfall)*2))
-        irrigation_percentage = int(irrigation_percentage)
 
 # Detailed result box
 st.markdown(
