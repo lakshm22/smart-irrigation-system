@@ -5,7 +5,7 @@ from utils.crops import CROP_TYPES
 
 # ---------- PAGE CONFIG ----------
 st.set_page_config(
-    page_title="Smart Irrigation Advisor",
+    page_title="Smart Irrigation System",
     page_icon="🌱",
     layout="centered"
 )
