@@ -71,4 +71,25 @@ if st.button("Analyze Irrigation Need 🌱"):
         schedule_map = {0: "⏸ Delay Irrigation", 1: "💧 Irrigate Lightly", 2: "🚿 Irrigate Fully"}
         st.markdown(f"<div class='result-box'>⚠ Irrigation Required<br><br>Recommendation: <b>{schedule_map[schedule]}</b></div>", unsafe_allow_html=True)
 
+# ---------- DYNAMIC GAUGE ----------
+# More accurate: calculate percentage based on soil moisture & rainfall
+irrigation_percentage = max(0, min(100, (50 - soil_moisture) + (20 - rainfall)*2))
+irrigation_percentage = int(irrigation_percentage)
+
+# Color coding
+if irrigation_percentage <= 20:
+    color = "green"
+elif irrigation_percentage <= 60:
+    color = "yellow"
+else:
+    color = "red"
+
+        st.markdown(f"""
+            <div style="border-radius:10px; background-color:#e0e0e0; height:25px; width:100%;">
+                <div style="width:{irrigation_percentage}%; background-color:{color}; height:25px; border-radius:10px;"></div>
+            </div>
+        """, unsafe_allow_html=True)
+        st.caption(f"💧 Irrigation Level: {irrigation_percentage}%")
+
+st.markdown("---")
 st.caption("Built for sustainability-focused decision making 🌍")
