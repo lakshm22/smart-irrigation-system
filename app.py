@@ -45,10 +45,11 @@ with st.sidebar.expander("SDG Impact"):
 
 with st.sidebar.expander("Tools Used"):
     st.write(
-        "- Python 3\n"
-        "- Streamlit for UI\n"
-        "- scikit-learn for AI models\n"
-        "- NumPy and pandas for data processing"
+        "- Python\n"
+        "- Streamlit\n"
+        "- scikit-learn (Decision Tree Classifier)\n"
+        "- NumPy\n"
+        "- Pandas"
     )
   
 st.sidebar.markdown("---")
