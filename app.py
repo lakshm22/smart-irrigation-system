@@ -85,6 +85,7 @@ if st.button("Analyze Irrigation Need 🌱"):
     else:
         schedule = predict_irrigation_schedule(soil_moisture, rainfall)
         schedule_map = {0: "⏸ Delay Irrigation", 1: "💧 Irrigate Lightly", 2: "🚿 Irrigate Fully"}
+        recommendation_text = schedule_map[schedule]
 
 
 # Detailed result box
