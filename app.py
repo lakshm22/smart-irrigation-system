@@ -93,44 +93,37 @@ if st.button("Analyze Irrigation Need 🌱"):
         }
 
         recommendation_text = schedule_map[schedule]
+        irrigation_percentage = schedule * 25
+        st.markdown(f"""
+        <div class='result-box'>
+        ⚠ <b>Irrigation Required!</b><br><br>
+        Crop Type: <b>{crop_type}</b><br>
+        Soil Moisture: <b>{soil_moisture}%</b><br>
+        Recent Rainfall: <b>{rainfall} mm</b><br>
+        Temperature: <b>{temperature}°C</b>, Humidity: <b>{humidity}%</b><br><br>
+        Recommendation: <b>{recommendation_text}</b><br>
+        Approximate irrigation amount suggested: <b>{irrigation_percentage}% of standard irrigation volume</b>.<br><br>
+        This recommendation balances water use and crop needs to optimize growth while conserving water.
+        </div> """, unsafe_allow_html=True)
 
+        # ---------- DYNAMIC GAUGE ----------
+        # More accurate: calculate percentage based on soil moisture & rainfall
+        irrigation_percentage = max(0, min(100, (50 - soil_moisture) + (20 - rainfall)*2))
+        irrigation_percentage = int(irrigation_percentage)
 
-# Detailed result box
-st.markdown(
-    f"""
-    <div class='result-box'>
-    ⚠ <b>Irrigation Required!</b><br><br>
-    Crop Type: <b>{crop_type}</b><br>
-    Soil Moisture: <b>{soil_moisture}%</b><br>
-    Recent Rainfall: <b>{rainfall} mm</b><br>
-    Temperature: <b>{temperature}°C</b>, Humidity: <b>{humidity}%</b><br><br>
-    Recommendation: <b>{recommendation_text}</b><br>
-    Approximate irrigation amount suggested: <b>{irrigation_percentage}% of standard irrigation volume</b>.<br><br>
-    This recommendation balances water use and crop needs to optimize growth while conserving water.
-    </div>
-    """,
-    unsafe_allow_html=True
-)
-
-# ---------- DYNAMIC GAUGE ----------
-# More accurate: calculate percentage based on soil moisture & rainfall
-irrigation_percentage = max(0, min(100, (50 - soil_moisture) + (20 - rainfall)*2))
-irrigation_percentage = int(irrigation_percentage)
-
-# Color coding
-if irrigation_percentage <= 20:
-    color = "green"
-elif irrigation_percentage <= 60:
-    color = "yellow"
-else:
-    color = "red"
-
-st.markdown(f"""
-<div style="border-radius:10px; background-color:#e0e0e0; height:25px; width:100%;">
-<div style="width:{irrigation_percentage}%; background-color:{color}; height:25px; border-radius:10px;"></div>
-</div>
-""", unsafe_allow_html=True)
-st.caption(f"💧 Irrigation Level: {irrigation_percentage}%")
+        # Color coding
+        if irrigation_percentage <= 20:
+            color = "green"
+        elif irrigation_percentage <= 60:
+            color = "yellow"
+        else:
+            color = "red"
+            
+            st.markdown(f"""
+            <div style="border-radius:10px; background-color:#e0e0e0; height:25px; width:100%;">
+            <div style="width:{irrigation_percentage}%; background-color:{color}; height:25px; border-radius:10px;"></div>
+            </div>""", unsafe_allow_html=True)
+            st.caption(f"💧 Irrigation Level: {irrigation_percentage}%")
 
 st.markdown("---")
 st.caption("Built for sustainability-focused decision making 🌍")
