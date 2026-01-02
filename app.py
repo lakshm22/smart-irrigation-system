@@ -73,8 +73,8 @@ if st.button("Analyze Irrigation Need 🌱"):
             ✅ <b>No irrigation needed today.</b><br><br>
             Your soil moisture is <b>{soil_moisture}%</b> and recent rainfall was <b>{rainfall} mm</b>, 
             which is sufficient for your <b>{crop_type}</b> crop. 
-            The temperature is {temperature}°C and humidity is {humidity}%, 
-            creating favorable conditions. You can save water and let the soil retain moisture naturally.
+            The temperature is {temperature}°C and the humidity is {humidity}%, 
+            creating favourable conditions. You can save water and let the soil retain moisture naturally.
             </div>
             """,
             unsafe_allow_html=True
@@ -84,7 +84,14 @@ if st.button("Analyze Irrigation Need 🌱"):
 
     else:
         schedule = predict_irrigation_schedule(soil_moisture, rainfall)
-        schedule_map = {0: "⏸ Delay Irrigation", 1: "💧 Irrigate Lightly", 2: "🚿 Irrigate Fully"}
+        schedule_map = {
+            0: "⏸ Delay/Low – No or minimal watering needed",
+            1: "💧 Light – Water slightly",
+            2: "🌱 Moderate – Water moderately",
+            3: "🚿 High – Water generously",
+            4: "💦 Full – Maximum irrigation required"
+        }
+
         recommendation_text = schedule_map[schedule]
 
 
